@@ -1,0 +1,36 @@
+html {
+    background-color: #90caf9 ; /*blue lighten-3*/
+}
+
+main {
+    flex: 1 0 auto
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh; /* Added to make footer at bottom*/ 
+}
+
+/* Nav bar */
+nav {
+    background-color: #1e88e5;  /*blue darken-1*/
+}
+nav img {
+    height: 3em;
+    vertical-align: middle;
+    margin: 0 .5em;
+}
+
+nav .btn, .sidenav .btn {
+    background-color: #d84315; /*deep-orange darken-3*/
+}
+nav .btn:hover, .sidenav .btn:hover{
+    background-color: #f4511e; /*deep-orange darken-1*/
+}
+
+/* footer */
+.page-footer {
+    background-color: #1e88e5; 
+}
+

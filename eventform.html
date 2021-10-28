@@ -1,0 +1,209 @@
+<!-- 
+    STOP! You should understand how index.html AND events.html are built first. 
+
+    This page is a prototype of an event create/modify form, allowing the user to create a new event or update it.
+
+    The page should only be accessible by an admin user!
+
+    This page has the same nav header and footer as index; the main section is what contains different things.
+
+    Some things of note :
+        This page uses a form. Read about various Materialize form components: https://materializecss.com/ 
+        Most of the page is a Materialize Card:    https://materializecss.com/cards.html 
+        Some custom CSS:         <link rel="stylesheet" href="/styles/newevent.css">
+        A certain initialization script to format the datepicker and timepicker form elements  https://materializecss.com/pickers.html
+
+    After this page, check out events/1.html (a sample event page)
+ -->
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+
+        <title>HackBCA 20XX</title>
+        <link rel="shortcut icon" type="image/jpg" href="/images/favicon.ico"/>
+
+        <!-- Compiled and minified CSS -->
+        <link rel="stylesheet" href="/styles/materialize.min.css">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+
+
+        <!-- Shared site-wide CSS  -->
+        <link rel="stylesheet" href="/styles/main.css">
+        <!-- Page specific CSS -->
+        <link rel="stylesheet" href="/styles/newevent.css">
+    </head>
+    <body>
+
+    <!-- https://materializecss.com/navbar.html -->
+    <header>
+        <nav>
+            <div class="nav-wrapper">
+                <img class="hide-on-small-and-down" src="/images/bca-logo-transparent.png">
+                <a href="/" class="brand-logo">HackBCA 20XX</a>
+                <a href="#" data-target="mobile-nav" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+                <ul id="desktop-nav" class="right hide-on-med-and-down">
+                    <li><a href="/events.html"><i class="material-icons left">event</i>Events</a></li>
+                    <li><a href="/attendees.html"><i class="material-icons left">people</i>Attendees</a></li>
+                    <li><a href="/projects.html"><i class="material-icons left">build</i>Projects</a></li>
+                    <li><a href="/login.html" class="btn">Login / Register</a></li>
+                </ul>
+            </div>
+        </nav>
+        <ul id="mobile-nav" class="sidenav">
+            <li><a href="/events.html"><i class="material-icons left">event</i>Events</a></li>
+            <li><a href="/attendees.html"><i class="material-icons left">people</i>Attendees</a></li>
+            <li><a href="/projects.html"><i class="material-icons left">build</i>Projects</a></li>
+            <li><a href="/login.html" class="btn">Login / Register</a></li>
+        </ul>
+    </header>
+
+    <main>
+        
+        <form id="create_update_event" method="post" action="/event">             <!-- action and method depend on C vs U-->
+            <input type="hidden" name="event_id" id="event_id" value="0"> 
+            <!-- server sets event_id value-->
+        
+                <div class="container">
+                    <div class="card grey lighten-4">
+                        <div class="card-content">
+
+                            <span class="card-title"><h1>Create New / Modify Event</h1></span>
+
+
+                            <div class="row">
+                                <div class="input-field col s12">
+                                    <input type="text" id="event_name" class="validate" data-length="32" required>
+                                    <label for="event_name">Event Name</label>
+                                </div>
+                            </div>
+
+                            <!-- https://materializecss.com/select.html -->
+                            <div class="row">
+                                <div class="input-field col s6">
+                                    <select id="event_type" name="event_type" required > 
+                                            <option value="" disabled selected>Select a type</option>
+                                            <option value="Main" >Main</option>
+                                            <option value="Workshop" >Workshop</option>
+                                            <option value="Food" >Food</option>
+                                            <option value="Talk" >Talk</option>
+                                            <option value="Activity" >Activity</option>
+                                        </select>
+                                    <label for="event_type">Event Type</label>
+                                </div>
+                
+                                <div class="input-field col s6">
+                                    <select id="event_location" name="event_location" required > 
+                                            <option value="" disabled selected>Select a location</option>
+                                            <option value="Gym" >Gym</option>
+                                            <option value="Auditorium" >Auditorium</option>
+                                            <option value="Lower Cafe" >Lower Cafe</option>
+                                            <option value="Commons" >Commons</option>
+                                            <option value="Room 136" >Room 136</option>
+                                            <option value="Room 138A" >Room 138A</option>
+                                            <option value="Room 138B" >Roomb 138B</option>
+                                        </select>
+                                    <label for="event_location">Location</label>
+                                </div>
+                            </div>
+                
+                            <div class="row">
+                                <div class = "input-field col s4">
+                                    <input type="text" id=event_date name="event_date" class="datepicker no-autoinit" required>
+                                    <label for="event_date">Date</label>
+                                </div>
+                
+                                <div class="input-field col s4">
+                                    <input type="text" id="event_time" name="event_time" class="timepicker no-autoinit" twelveHour=true required>
+                                    <label for="event_time">Time</label>
+                                </div>
+
+                                <div class="input-field col s4">
+                                    <input type="number" id="event_duration" name="event_duration" min=0 step=15>
+                                    <label for="event_duration">Duration (minutes)</label>
+                                    
+                                </div>
+                            </div>
+                
+                            <div class="row">
+                                <div class="input-field col s12">
+                                <textarea id="event_description" class="materialize-textarea" data-length="500"></textarea>
+                                <label for="event_description">Description</label>
+                                </div>
+                            </div>
+
+                            <div class="button_wrapper">
+                                <button class="submit waves-effect waves-light btn" type="submit">Create</button>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </form>
+    </main>
+
+    <!-- Special initialization script for initializing .datepicker and.timepicker with options -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            var elems = document.querySelectorAll('.datepicker');
+            var instances = M.Datepicker.init(elems, {
+                format: 'mm-dd-yyyy',
+                autoClose: true
+            });
+        });
+        
+        document.addEventListener('DOMContentLoaded', function() {
+            var elems = document.querySelectorAll('.timepicker');
+            var instances = M.Timepicker.init(elems, {
+                defaultTime: 'now', // Set default time: 'now', '1:30AM', '16:30'
+                twelveHour: true, // Use AM/PM or 24-hour format
+                autoClose: false, // automatic close timepicker
+            });
+        });
+
+    //TODO Form Validation
+    </script>
+        
+
+    <!-- https://materializecss.com/footer.html -->
+    <footer class="page-footer">
+        <div class="container">
+          <div class="row">
+            <div class="col l6 s12">
+              <h5 class="white-text">Sponsors</h5>
+              <p >hackBCA is brought to you by:</p>
+              <ul>
+                <li>BCA PPO</li>
+                <li>Tech-Pa</li>
+                <li>&lt;Corporate Sponsors&gt;</li>
+                <li>Wanna join this list? Sponsor us!</li>
+              </ul>
+            </div>
+            <div class="col l4 offset-l2 s12">
+              <h5 class="white-text">Contact Us</h5>
+              <ul>
+                <li>Twitter: @hackbca</li>
+                <li>Instagram: @hackbca</li>
+                <li>Facebook: @hackbca</li>
+                <li>Email: hackbca@_____</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="footer-copyright">
+          <div class="container">
+          © 2021 Copyright Text
+          <a class="grey-text text-lighten-4 right" href="#!">More Links</a>
+          </div>
+        </div>
+      </footer>
+
+    <!-- Compiled and minified JavaScript -->
+    <script src="/js/materialize.min.js"></script>
+      
+    <!-- initialize Materialize elements -->
+    <script> M.AutoInit(); </script>
+
+
+    </body>
+</html>

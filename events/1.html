@@ -1,0 +1,172 @@
+<!-- 
+    STOP! You should understand how index.html AND events.html are built first. 
+
+    This page is a prototype of an event page, showing details about a specific event.
+
+    An unregistered user will not see any buttons.
+    A registered user (attendee) will see the "star" buttons
+    An admin user will see the edit, delete, and create buttons
+
+    This page has the same nav header and footer as index; the main section is what contains different things.
+
+    Many things of note are shared with events.html: 
+        Tables, which materialize has nice options for: https://materializecss.com/table.html
+        Icons, which are : https://materializecss.com/icons.html
+        Materialize "buttons": https://materializecss.com/buttons.html
+        Some custom CSS for formatting tables:         <link rel="stylesheet" href="/styles/tables.css">
+        Some custom JS for interactive buttons:     <script src="/js/event_utils.js"></script>
+
+    Some things of note SPECIFIC TO THIS PAGE:
+        Most of the page is a Materialize Card:    https://materializecss.com/cards.html 
+        Some custom CSS:         <link rel="stylesheet" href="/styles/event.css">
+
+
+    After this page, check out eventform.html (a sample add/modify event page)
+ -->
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+
+        <title>HackBCA 20XX</title>
+        <link rel="shortcut icon" type="image/jpg" href="/images/favicon.ico"/>
+
+        <!-- Compiled and minified CSS -->
+        <link rel="stylesheet" href="/styles/materialize.min.css">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+
+
+        <!-- Shared site-wide CSS  -->
+        <link rel="stylesheet" href="/styles/main.css">
+        <!-- Page specific CSS -->
+        <link rel="stylesheet" href="/styles/tables.css">
+        <link rel="stylesheet" href="/styles/event.css">
+    </head>
+    <body>
+    <header>
+        <nav>
+            <div class="nav-wrapper">
+                <img class="hide-on-small-and-down" src="/images/bca-logo-transparent.png">
+                <a href="/" class="brand-logo">HackBCA 20XX</a>
+                <a href="#" data-target="mobile-nav" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+                <ul id="desktop-nav" class="right hide-on-med-and-down">
+                    <li><a href="/events.html"><i class="material-icons left">event</i>Events</a></li>
+                    <li><a href="/attendees.html"><i class="material-icons left">people</i>Attendees</a></li>
+                    <li><a href="/projects.html"><i class="material-icons left">build</i>Projects</a></li>
+                    <li><a href="/login.html" class="btn">Login / Register</a></li>
+                </ul>
+            </div>
+        </nav>
+        <ul id="mobile-nav" class="sidenav">
+            <li><a href="/events.html"><i class="material-icons left">event</i>Events</a></li>
+            <li><a href="/attendees.html"><i class="material-icons left">people</i>Attendees</a></li>
+            <li><a href="/projects.html"><i class="material-icons left">build</i>Projects</a></li>
+            <li><a href="/login.html" class="btn">Login / Register</a></li>
+        </ul>
+    </header>
+    <main>
+        <div class="container">
+
+                  <div class="card">
+                    <!-- image is optional -->
+                    <div class="card-image">
+                        <!-- Added div wrapper to create dark gradient -->
+                        <div class="card-image-gradient"> 
+                            <img src="/images/assembly.jpg">
+                        </div>
+                        <span class="card-title"><h1>Opening Ceremony</h1></span>
+                      <!-- USER ONLY - Initialize page with appropriate state of button -->
+                      <a onclick='toggleInterest(this, "{{ event_id }}")' class="btn-floating btn-large halfway-fab waves-effect waves-light scale-transition scale-in blue"><i class="material-icons">star_border</i></a>
+                      <!-- <a onclick='toggleInterest(this, "{{ event_id }}"))'class="btn-floating btn-large halfway-fab waves-effect waves-light scale-transition scale-in yellow"><iclass="material-icons">star</i></a> -->
+                        
+                    </div>
+                    <div class="card-content">
+
+                        <table class="centered responsive-table">
+                            <thead>
+                                <tr>
+                                <th>Location </th>
+                                <th>Date / Time </th>
+                                <th>Duration</th>
+                                <th>Type </th>
+                                <th>Interest </th>
+                                <!-- ADMIN ONLY BUTTONS -->
+                                <th>Admin Op</th>
+                                
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+
+                                <td>Auditorium </td>
+                                <td>May 2 (Sat) 08:30 AM</td>
+                                <td>45m</td>
+                                <td>Main</td>
+                                <td>10<i class=material-icons>people</i></td>
+                                <!-- ADMIN ONLY BUTTONS -->
+
+                                <td nowrap>
+                                  
+                                    <!-- Alternatively to going to a new page, trigger a modal ??-->
+                                    <a class="btn-floating waves-effect waves-light green lighten-1" href="/eventform.html"><i class="material-icons">edit</i></a>
+                                    <a class="btn-floating waves-effect waves-light red" onclick='confirmDelete("Opening Ceremony","{{ event_id}}", "/events.html")'><i class="material-icons">delete</i></a>
+        
+                                </td>
+
+                            </tbody>
+                        </table>
+                        <div class="container event-description">The opening ceremony will be rad! Don't miss it. Or you're technically late.</div>
+                        
+                        
+                        <!-- TODO: Add a scrollable table (or series of cards??) listing the attendees who are interested -->
+                        <!-- https://vembarrajan.medium.com/html-css-tricks-scroll-able-table-body-tbody-d23182ae0fbc -->
+                    </div>
+                  </div>
+            
+    
+        </div>
+    </main>
+
+    <footer class="page-footer">
+        <div class="container">
+          <div class="row">
+            <div class="col l6 s12">
+              <h5 class="white-text">Sponsors</h5>
+              <p >hackBCA is brought to you by:</p>
+              <ul>
+                <li>BCA PPO</li>
+                <li>Tech-Pa</li>
+                <li>&lt;Corporate Sponsors&gt;</li>
+                <li>Wanna join this list? Sponsor us!</li>
+              </ul>
+            </div>
+            <div class="col l4 offset-l2 s12">
+              <h5 class="white-text">Contact Us</h5>
+              <ul>
+                <li>Twitter: @hackbca</li>
+                <li>Instagram: @hackbca</li>
+                <li>Facebook: @hackbca</li>
+                <li>Email: hackbca@_____</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="footer-copyright">
+          <div class="container">
+          © 2021 Copyright Text
+          <a class="grey-text text-lighten-4 right" href="#!">More Links</a>
+          </div>
+        </div>
+      </footer>
+
+    <script src="/js/event_utils.js"></script>
+
+
+    <!-- Compiled and minified JavaScript -->
+    <script src="/js/materialize.min.js"></script>
+
+    <!-- initialize Materialize elements -->
+    <script> M.AutoInit(); </script>
+    </body>
+</html>
