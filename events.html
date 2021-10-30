@@ -12,7 +12,7 @@
         Tables, which materialize has nice options for: https://materializecss.com/table.html
         Icons, which are : https://materializecss.com/icons.html
         Materialize "buttons": https://materializecss.com/buttons.html
-
+        Some relative links that add URL query params, for filtering/searching 
         Some custom CSS for formatting tables:         <link rel="stylesheet" href="/styles/tables.css">
         Some custom JS for interactive buttons:     <script src="/js/event_utils.js"></script>
 
@@ -116,10 +116,10 @@
                     </td> 
                     <td class="blue-text clickable" onclick="location.href='/events/1.html'">Opening Ceremony</td> <!-- General: './{{ event_id }}/' -->
                     <td> <a href='?filter=location:Auditorium'>Auditorium </a></td>
-                    <td>May 2 (Sat) 08:30 AM</td>
-                    <td>45m</td>
+                    <td><a href='?filter=date:05-01-2022'>May 1 (Sat)</a> 10:30 AM</td>
+                    <td>30m</td>
                     <td> <a href='?filter=type:Main'>Main</a></td>
-                    <td>10<i class=material-icons>people</i></td>
+                    <td>100<i class=material-icons>people</i></td>
                     <!-- ADMIN ONLY BUTTONS -->
                     <td nowrap>
                                     
@@ -138,12 +138,12 @@
                             <a onclick='toggleInterest(this, "{{ event_id }}")' class="btn-floating btn-small waves-effect waves-light scale-transition scale-in blue"><i class="material-icons">star_border</i></a>
                             <!-- <a onclick='toggleInterest(this, "{{ event_id }}"))'class="btn-floating btn-small waves-effect waves-light scale-transition scale-in yellow"><iclass="material-icons">star</i></a> -->
                         </td> 
-                        <td class="blue-text clickable" onclick="location.href='/events/1.html'">Opening Ceremony</td> <!-- General: './{{ event_id }}/' -->
+                        <td class="blue-text clickable" onclick="location.href='/events/2.html'">Closing Awards Ceremony</td> <!-- General: './{{ event_id }}/' -->
                         <td> <a href='?filter=location:Auditorium'>Auditorium </a></td>
-                        <td><a href='?filter=date:05-22-2021'>May 2 (Sat)</a> 08:30 AM</td>
-                        <td>45m</td>
+                        <td><a href='?filter=date:05-02-2021'>May 2 (Sun)</a> 11:00 AM</td>
+                        <td>30m</td>
                         <td> <a href='?filter=type:Main'>Main</a></td>
-                        <td>10<i class=material-icons>people</i></td>
+                        <td>99<i class=material-icons>people</i></td>
                         <!-- ADMIN ONLY BUTTONS -->
                         <td nowrap>
                                         
