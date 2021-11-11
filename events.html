@@ -9,12 +9,14 @@
     This page has the same nav header and footer as index; the main section is what contains different things.
 
     Of Note: 
-        Tables, which materialize has nice options for: https://materializecss.com/table.html
-        Icons, which are : https://materializecss.com/icons.html
+        HTML Tables (https://developer.mozilla.org/en-US/docs/Learn/HTML/Tables/Basics), 
+        With Materialize, tables have nice style options: https://materializecss.com/table.html
+        Materialize Icons: https://materializecss.com/icons.html
         Materialize "buttons": https://materializecss.com/buttons.html
         Some relative links that add URL query params, for filtering/searching 
         Some custom CSS for formatting tables:         <link rel="stylesheet" href="/styles/tables.css">
         Some custom JS for interactive buttons:     <script src="/js/event_utils.js"></script>
+        Some onclick attributes on certain clickable HTML elements, which trigger a snippet of JS
 
     After this page, check out events/1.html (a sample event page) and eventform.html (a sample add/modify event page)
  -->
@@ -75,7 +77,7 @@
       <div class="row">
         <div class="col l3 s12 "> <i class="left material-icons">sort</i>Sorted by: Date / Time</div>
         <div class="col l3 offset-l6 ">
-          <!-- Position diffeently (left) for mobile -->
+          <!-- Position differently (left) for mobile -->
           <div class="right hide-on-small-only"><i class="left material-icons">filter_list</i>Filter: None</div>
           <div class="left hide-on-med-and-up"><i class="left material-icons">filter_list</i>Filter: None</div>
         </div>
@@ -86,9 +88,11 @@
       <table class="highlight centered responsive-table">
         <thead>
           <tr>
+            <!-- USER ONLY-->
             <th><i class="material-icons">star</i>
               <a href="?sort=starred"><i class="material-icons">sort</i></a>
-            </th> <!-- USER ONLY-->
+            </th> 
+
             <th>Event</th>
             <th>Location <a href="?sort=location">
                 <i class="material-icons">sort</i></a>
@@ -104,6 +108,7 @@
             </th>
             <th>Interest<i class="material-icons">sort</i></th>
           </tr>
+
           <!-- ADMIN ONLY BUTTONS -->
           <th>Admin Op</th>
         </thead>
@@ -112,15 +117,14 @@
           <tr>
 
             <!-- USER ONLY - Initialize page with appropriate state of button -->
-
             <td>
               <a onclick='toggleInterest(this, "{{ event_id }}")'
                 class="btn-floating btn-small waves-effect waves-light scale-transition scale-in blue"><i
                   class="material-icons">star_border</i></a>
+              <!-- If user already "starred" this event, it should be a yellow star -->
               <!-- <a onclick='toggleInterest(this, "{{ event_id }}"))'class="btn-floating btn-small waves-effect waves-light scale-transition scale-in yellow"><iclass="material-icons">star</i></a> -->
             </td>
             <td class="blue-text clickable" onclick="location.href='/events/1.html'">Opening Ceremony</td>
-            <!-- General: './{{ event_id }}/' -->
             <td> <a href='?filter=location:Auditorium'>Auditorium </a></td>
             <td><a href='?filter=date:05-01-2022'>May 1 (Sat)</a> 10:30 AM</td>
             <td>30m</td>
@@ -129,7 +133,6 @@
             <!-- ADMIN ONLY BUTTONS -->
             <td nowrap>
 
-              <!-- Alternatively to going to a new page, trigger a modal ??-->
               <a class="btn-floating btn-small waves-effect waves-light green lighten-1" href="/eventform.html"><i
                   class="material-icons">edit</i></a>
               <a class="btn-floating waves-effect waves-light red"
@@ -147,10 +150,10 @@
               <a onclick='toggleInterest(this, "{{ event_id }}")'
                 class="btn-floating btn-small waves-effect waves-light scale-transition scale-in blue"><i
                   class="material-icons">star_border</i></a>
+              <!-- If user already "starred" this event, it should be a yellow star -->
               <!-- <a onclick='toggleInterest(this, "{{ event_id }}"))'class="btn-floating btn-small waves-effect waves-light scale-transition scale-in yellow"><iclass="material-icons">star</i></a> -->
             </td>
             <td class="blue-text clickable" onclick="location.href='/events/2.html'">Closing Awards Ceremony</td>
-            <!-- General: './{{ event_id }}/' -->
             <td> <a href='?filter=location:Auditorium'>Auditorium </a></td>
             <td><a href='?filter=date:05-02-2021'>May 2 (Sun)</a> 11:00 AM</td>
             <td>30m</td>
@@ -159,7 +162,6 @@
             <!-- ADMIN ONLY BUTTONS -->
             <td nowrap>
 
-              <!-- Alternatively to going to a new page, trigger a modal ??-->
               <a class="btn-floating btn-small waves-effect waves-light green lighten-1" href="./eventform.html"><i
                   class="material-icons">edit</i></a>
               <a class="btn-floating waves-effect waves-light red"
