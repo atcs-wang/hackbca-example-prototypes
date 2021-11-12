@@ -17,6 +17,7 @@
       <!-- Shared site-wide CSS  -->
       <link rel="stylesheet" href="/styles/main.css">
       <!-- Page specific CSS -->
+      <link rel="stylesheet" href="/styles/better_table.css">
       <link rel="stylesheet" href="/styles/tables.css">
     </head>
 
@@ -47,42 +48,46 @@
             <!-- Option 1: Bootstrap Bundle with Popper -->
             <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
             
-            <div class="container">
+            <div id="heading">
+                <div class="container">
 
-                <h1>Project List</h1>
-          
-                <blockquote>
-                  Click on the project name for more details!
-                </blockquote>
-                <div class="row"> 
+                    <h1>Project List</h1>
+            
+                    <blockquote>
+                    Click on the project name for more details!
+                    </blockquote>
+                    <div class="row"> 
 
+                    </div>
                 </div>
             </div>
 
-            <table class="table table-striped">
-                <thead class="table-dark">
-                  <tr>
-                    <th scope="col">Name</th>
-                    <th scope="col">Owner</th>
-                    <th scope="col">Type</th>
-                    <th scope="col">Date Proposed</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <td class="blue-text clickable" onclick="location.href='/projects/1.html'">How to make a Bot Cry</td>
-                    <td>Devin J. Crowley</td>
-                    <td>Artifical Intelligence</td>
-                    <td>February 29, 2020</td>
-                  </tr>
-                  <tr>
-                    <td class="blue-text clickable" onclick="location.href='/projects/2.html'">How to make a Bot Die</td>
-                    <td>Sarah Choi ILY</td>
-                    <td>Artifical Death</td>
-                    <td>February 30, 20XX</td>
-                  </tr>
-                </tbody>
-              </table>
+            <div id="table">
+                <table class="table table-striped">
+                    <thead class="table-dark">
+                    <tr>
+                        <th scope="col">Name</th>
+                        <th scope="col">Owner</th>
+                        <th scope="col">Type</th>
+                        <th scope="col">Date Proposed</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td class="blue-text clickable" onclick="location.href='/projects/1.html'">How to make a Bot Cry</td>
+                        <td>Devin J. Crowley</td>
+                        <td>Artifical Intelligence</td>
+                        <td>February 29, 2020</td>
+                    </tr>
+                    <tr>
+                        <td class="blue-text clickable" onclick="location.href='/projects/2.html'">How to make a Bot Die</td>
+                        <td>Sarah Choi ILY</td>
+                        <td>Artifical Death</td>
+                        <td>February 30, 20XX</td>
+                    </tr>
+                    </tbody>
+                </table>
+              </div>
         </main>
 
     </body>
